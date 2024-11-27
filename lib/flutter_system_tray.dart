@@ -8,7 +8,21 @@
 import 'flutter_system_tray_platform_interface.dart';
 
 class FlutterSystemTray {
-  Future<String?> getPlatformVersion() {
-    return FlutterSystemTrayPlatform.instance.getPlatformVersion();
+  Future<bool?> createSystemTray({
+    required String iconPath,
+    required String tooltip,
+  }) {
+    return FlutterSystemTrayPlatform.instance.createSystemTray(iconPath, tooltip);
+  }
+
+  Future<bool?> updateSystemTray({
+    String? iconPath,
+    String? tooltip,
+  }) {
+    return FlutterSystemTrayPlatform.instance.updateSystemTray(iconPath, tooltip);
+  }
+
+  Future<bool?> destroySystemTray() {
+    return FlutterSystemTrayPlatform.instance.destroySystemTray();
   }
 }

@@ -23,7 +23,15 @@ abstract class FlutterSystemTrayPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<bool?> createSystemTray(String iconPath, String tooltip) {
+    throw UnimplementedError('createSystemTray() has not been implemented.');
+  }
+
+  Future<bool?> updateSystemTray(String? iconPath, String? tooltip) {
+    throw UnimplementedError('updateSystemTray() has not been implemented.');
+  }
+
+  Future<bool?> destroySystemTray() {
+    throw UnimplementedError('destroySystemTray() has not been implemented.');
   }
 }

@@ -10,8 +10,27 @@ class MethodChannelFlutterSystemTray extends FlutterSystemTrayPlatform {
   final methodChannel = const MethodChannel('flutter_system_tray');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<bool?> createSystemTray(String iconPath, String tooltip) async {
+    final result = await methodChannel.invokeMethod<bool>('createSystemTray', {
+      'iconPath': iconPath,
+      'tooltip': tooltip,
+    });
+    return result;
+  }
+
+  @override
+  Future<bool?> updateSystemTray(String? iconPath, String? tooltip) async {
+    final Map<String, dynamic> arguments = {};
+    if (iconPath != null) arguments['iconPath'] = iconPath;
+    if (tooltip != null) arguments['tooltip'] = tooltip;
+
+    final result = await methodChannel.invokeMethod<bool>('updateSystemTray', arguments);
+    return result;
+  }
+
+  @override
+  Future<bool?> destroySystemTray() async {
+    final result = await methodChannel.invokeMethod<bool>('destroySystemTray');
+    return result;
   }
 }
